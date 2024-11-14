@@ -83,10 +83,10 @@ def InitializePayment():
     data.update(payment_request)
     db.uploadData(data)
     db.close()
-    responseData = getPaymentStatus((payment_request['id']))
+    responseData = payment_request
 
     if responseData['success']:
-        Webhook = {'shorturl':responseData['payment_request']['shorturl'], "payment_request_id":responseData['payment_request']["id"]}
+        Webhook = {'shorturl':responseData['payment_request']['longurl'], "payment_request_id":responseData['payment_request']["id"]}
 
     return jsonify({"success": True, "message": Webhook}), 200
 
